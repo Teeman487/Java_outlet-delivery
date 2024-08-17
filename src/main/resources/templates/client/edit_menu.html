@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+>
+
+<div th:replace="client/header :: header"></div>
+<body>
+<div th:replace="client/header :: navbar"></div>
+<br /><br />
+
+<div class="container">
+    <div class="row col-md-8 offset-md-2">
+        <div class="card">
+            <div class="card-header">
+                <h2 class="text-center">Edit Menu</h2>
+            </div>
+
+
+            <div class="card-body" >
+                <form role="form"
+                      method="post"
+                      th:action="@{/restaurant/menus/{menuId}
+                                 (menuId=${menu.id})}"
+                      th:object="${menu}" >
+
+                    <!-- Update along with the db-->
+                    <input type="hidden"
+                           th:field="*{id}">
+                    <input type="hidden"
+                           th:field="*{createdOn}">
+
+
+
+
+
+                    <div class="mb-3" >
+                        <label class="form-label">Product Name</label>
+
+                        <input
+                                type="text"
+                                class="form-control"
+                                id="name"
+                                placeholder="Enter product name"
+                                name="title"
+                                th:field="*{name}"
+                        />
+
+                        <p th:if="${#fields.hasErrors('name')}" class="text-danger"
+                           th:errors="*{name}"></p>
+                    </div>
+
+
+                    <div class="mb-3">
+                        <label class="form-label">Stock</label>
+                        <textarea
+                                class="form-control"
+                                id="stock"
+                                placeholder="Enter your stock in (e.g. 100)"
+                                name="stock"
+                                th:field="*{stock}"
+                        >
+                        </textarea>
+
+                        <p th:if="${#fields.hasErrors('stock')}" class="text-danger"
+                           th:errors="*{stock}"></p>
+                    </div>
+
+
+
+                    <div class="mb-3">
+                        <label class="form-label">Price</label>
+                        <textarea
+                                class="form-control"
+                                id="price"
+                                placeholder="Enter product price"
+                                name="price"
+                                th:field="*{price}"
+                        >
+
+                        </textarea>
+
+                        <p th:if="${#fields.hasErrors('price')}" class="text-danger"
+                           th:errors="*{price}"></p>
+                    </div>
+
+
+
+                    <div class="mb-3">
+                        <label class="form-label">Menu Description</label>
+                        <textarea
+                                class="form-control"
+                                id="description"
+                                placeholder="Enter menu description"
+                                rows="3"
+                                name="description"
+                                th:field="*{description}"
+                        >
+
+                        </textarea>
+                        <p th:if="${#fields.hasErrors('description')}" class="text-danger"
+                           th:errors="*{description}"></p>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit menu</button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<br /><br /><br /><br /><br />
+
+
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"
+        integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g="
+        crossorigin="anonymous"></script>
+
+<script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
+<script>
+    ClassicEditor
+        .create( document.querySelector( '#content' ) )
+        .then( editor => {
+            console.log( editor );
+        } )
+        .catch( error => {
+            console.error( error );
+        } );
+</script>
+
+
+</body>
+</html>
+
+
