@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+>
+
+<div th:replace="client/header :: header"></div>
+<body>
+<div th:replace="client/header :: navbar"></div>
+
+<div class="container">
+  <div class="row">
+    <h1>List of Menus</h1>
+  </div>
+
+  <div class="row">
+    <div class="col-md-3">
+      <div class="form-group">
+        <form class="form-inline" th:action="@{/restaurant/menus/search}">
+          <div class="input-group">
+            <input type="text" class="form-control" name="query" />
+            <span class="input-group-btn">
+                            <button class="btn btn-primary" type="submit"> Search</button>
+                        </span>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+  <br />
+
+
+
+  <table class="table table-striped table-hover table-bordered">
+    <thead class="table-dark">
+    <th style="width:10%" >#</th>
+    <th style="width:15%" >Product name</th>
+    <th style="width:15%" >Price</th>
+    <th style="width:15%" >Stock</th>
+    <th style="width:20%" >Created On</th>
+    <th style="width:20%" >Actions</th>
+
+    </thead>
+    <tbody>
+    <tr th:each = "menu, menuStat : ${menus}">
+      <td th:text="${menuStat.count}">1</td>
+      <td th:text="${menu.name}">Product name</td>
+      <td th:text="${menu.price}">Price</td>
+      <td th:text="${menu.stock}">Stock</td>
+
+      <td th:text="${#temporals.format(menu.createdOn,'dd MMM yyy')}">11 Aug 2024</td>
+      <td>
+        <a th:href="@{/restaurant/menus/{menuId}/edit(menuId=${menu.id})}" class="btn btn-primary">Edit</a>
+        <a th:href="@{/restaurant/menus/{menuId}/delete(menuId=${menu.id})}" class="btn btn-danger">Delete</a>
+        <a th:href="@{/restaurant/menus/{menuStock}/view(menuStock=${menu.stock})}" class="btn btn-info">View</a>
+
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<div th:replace="client/footer :: footer"></div>
+</body>
+</html>
