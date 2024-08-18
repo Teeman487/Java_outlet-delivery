@@ -8,7 +8,7 @@ An outlet food delivery application built with Java Spring Boot and Thymeleaf.
 - Admin or Client panel for managing many menus created by one restaurant
 
 ## Usage
-- Clone the repository: `git clone https://github.com/Teeman487/OutletFoodSpring.git`
+- Clone the repository: `git clone https://github.com/Teeman487/Java_outlet-delivery`
 - Access the application at `http://localhost:8080/restaurant`
 - Register as a restaurant
 - Log in to manage menus
